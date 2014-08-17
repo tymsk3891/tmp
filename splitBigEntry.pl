@@ -22,7 +22,7 @@ sub get_length {
 sub calc_split_num {
 
 	my ($length, $bp_per_entry) = @_;
-	if($length !~ /^[0-9]+$/){
+	if($length !~ /^[0-9]+$/ or $length == 0){
 		die("ERROR: length($length) is invalid.");
 	}
 	if($bp_per_entry !~ /^[0-9]+$/ or $bp_per_entry == 0){
@@ -34,7 +34,7 @@ sub calc_split_num {
 }
 
 
-
+my $SPLIT_LENGTH = 300000000;
 
 
 my $USAGE = "USAGE: $0 flatfilename\n";
@@ -49,8 +49,10 @@ if(@ARGV == 1){
 	exit 1;
 }
 
-my $length = &get_length($flatfile);
 
-print &calc_split_num($length, 3);
+my $length = &get_length($flatfile);
+my $split_num = &calc_split_num($length, $SPLIT_LENGTH);
+
+print $split_num;
 print "\n";
 
