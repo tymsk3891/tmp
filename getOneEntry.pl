@@ -5,7 +5,6 @@ my $USAGE = "USAGE: $0 ACCESSION_NUMBER\n";
 my $accession;
 if(@ARGV == 1){
         $accession = $ARGV[0];
-        print "$accession\n";
 }else{
         print "ACCESSION NUMBER not set.\n";
         print "$USAGE";
